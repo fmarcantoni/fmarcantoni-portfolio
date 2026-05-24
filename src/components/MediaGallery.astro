@@ -1,0 +1,32 @@
+---
+import MediaFrame from "./MediaFrame.astro";
+import type { PortfolioMediaItem } from "../data/portfolioMedia";
+
+interface Props {
+  items?: PortfolioMediaItem[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section aria-labelledby="media-gallery-heading">
+    <h2 id="media-gallery-heading" class="text-2xl font-semibold text-white">Media Gallery</h2>
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      {items.map((item) => (
+        <article class="grid gap-3">
+          <MediaFrame
+            title={item.title}
+            image={item.type === "image" ? item.src : item.poster}
+            video={item.type === "video" ? item.src : undefined}
+            poster={item.poster}
+          />
+          <div>
+            <p class="text-sm font-semibold text-white">{item.title}</p>
+            {item.description && <p class="mt-1 text-sm leading-6 text-slate-400">{item.description}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

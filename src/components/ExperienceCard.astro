@@ -1,0 +1,22 @@
+---
+import Card from "./Card.astro";
+import type { ExperienceItem } from "../data/experience";
+
+interface Props {
+  item: ExperienceItem;
+}
+
+const { item } = Astro.props;
+---
+
+<Card
+  type={item.type}
+  title={item.title}
+  meta={`${item.role} · ${item.organization}`}
+  dates={item.dates}
+  summary={item.summary}
+  technologies={item.technologies}
+  href={`/experience/${item.slug}`}
+  image={item.image}
+  imagePosition={item.imagePosition}
+/>

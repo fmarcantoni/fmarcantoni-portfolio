@@ -1,0 +1,84 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+interface Props {
+  title: string;
+  image?: string;
+  video?: string;
+  poster?: string;
+  note?: string;
+  compact?: boolean;
+  imagePosition?: string;
+}
+
+const { title, image, video, poster, note, compact = false, imagePosition } = Astro.props;
+
+const publicPathExists = (asset?: string) => {
+  if (!asset || !asset.startsWith("/")) return Boolean(asset);
+  return fs.existsSync(path.join(process.cwd(), "public", asset.slice(1)));
+};
+
+const toYoutubeEmbed = (url?: string) => {
+  if (!url) return undefined;
+  const watchMatch = url.match(/[?&]v=([^&]+)/);
+  const shortMatch = url.match(/youtu\.be\/([^?]+)/);
+  const embedMatch = url.match(/youtube\.com\/embed\/([^?]+)/);
+  const id = watchMatch?.[1] || shortMatch?.[1] || embedMatch?.[1];
+  return id ? `https://www.youtube.com/embed/${id}` : undefined;
+};
+
+const imageExists = publicPathExists(image);
+const videoExists = publicPathExists(video);
+const youtubeEmbed = toYoutubeEmbed(video);
+const canRenderVideo = !compact && Boolean(youtubeEmbed || (video && videoExists));
+---
+
+<figure class={`overflow-hidden rounded-lg border border-slate-700/70 bg-slate-950 ${compact ? "h-28" : ""}`}>
+  {canRenderVideo ? (
+    youtubeEmbed ? (
+      <iframe
+        class={compact ? "h-full w-full" : "aspect-video w-full"}
+        src={youtubeEmbed}
+        title={`${title} video`}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    ) : (
+      <video
+        class={compact ? "h-full w-full object-cover" : "aspect-video w-full bg-slate-950 object-contain"}
+        style={imagePosition ? `object-position: ${imagePosition}` : undefined}
+        controls={!compact}
+        muted={compact}
+        playsinline
+        preload="metadata"
+        poster={poster}
+        aria-label={`${title} video`}
+      >
+        <source src={video} />
+      </video>
+    )
+  ) : imageExists ? (
+    <img
+      src={image}
+      alt={`${title} visual`}
+      class={compact ? "h-full w-full object-cover" : "max-h-[520px] w-full bg-slate-950 object-contain"}
+      style={imagePosition ? `object-position: ${imagePosition}` : undefined}
+      loading="lazy"
+    />
+  ) : (
+    <div class={`technical-grid relative ${compact ? "h-full" : "h-72"}`} aria-hidden="true">
+      <div class="absolute left-8 right-8 top-1/2 h-px signal-line"></div>
+      <div class="absolute left-1/2 top-10 h-52 w-px -translate-x-1/2 bg-cyan-300/25"></div>
+      <div class="absolute left-[20%] top-[28%] h-16 w-24 rounded-md border border-cyan-300/30 bg-slate-900/85"></div>
+      <div class="absolute right-[18%] top-[48%] h-20 w-28 rounded-md border border-sky-300/25 bg-slate-900/85"></div>
+      <div class="absolute bottom-8 left-8 h-2 w-28 rounded-sm bg-cyan-300/55"></div>
+    </div>
+  )}
+  {note && !compact && (
+    <figcaption class="border-t border-slate-800 px-5 py-4 text-sm text-slate-400">
+      {note}
+    </figcaption>
+  )}
+</figure>

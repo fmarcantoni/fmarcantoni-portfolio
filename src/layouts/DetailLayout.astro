@@ -1,0 +1,118 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import MediaFrame from "../components/MediaFrame.astro";
+import MediaGallery from "../components/MediaGallery.astro";
+import SkillBadge from "../components/SkillBadge.astro";
+import type { PortfolioMediaItem } from "../data/portfolioMedia";
+
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  type: string;
+  title: string;
+  summary: string;
+  meta: MetaItem[];
+  technologies: string[];
+  backHref: string;
+  backLabel: string;
+  image?: string;
+  video?: string;
+  imagePosition?: string;
+  media?: PortfolioMediaItem[];
+  links?: LinkItem[];
+  visualNote?: string;
+  pageTitle?: string;
+  description?: string;
+}
+
+const {
+  type,
+  title,
+  summary,
+  meta,
+  technologies,
+  backHref,
+  backLabel,
+  image,
+  video,
+  imagePosition,
+  media = [],
+  links = [],
+  visualNote,
+  pageTitle = `${title} | Filippo Marcantoni`,
+  description = summary
+} = Astro.props;
+---
+
+<BaseLayout title={pageTitle} description={description}>
+  <main>
+    <section class="border-b border-slate-800/80">
+      <div class="mx-auto max-w-5xl px-5 py-16 lg:px-8">
+        <a class="focus-ring inline-flex rounded-md text-sm font-semibold text-cyan-300 hover:text-cyan-200" href={backHref}>
+          Back to {backLabel}
+        </a>
+        <div class="mt-8">
+          <span class="rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 text-sm font-semibold uppercase text-cyan-200">
+            {type}
+          </span>
+          <h1 class="mt-5 text-4xl font-semibold leading-[1.08] text-white md:text-6xl">{title}</h1>
+          <p class="mt-6 text-lg leading-8 text-slate-300">{summary}</p>
+        </div>
+        <dl class="mt-10 grid gap-4 sm:grid-cols-2">
+          {meta.map((item) => (
+            <div class="surface rounded-lg p-4">
+              <dt class="text-xs font-semibold uppercase text-slate-400">{item.label}</dt>
+              <dd class="mt-2 text-sm font-medium text-white">{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-5xl gap-10 px-5 py-14 lg:px-8">
+      <slot />
+
+      <section aria-labelledby="technologies-heading">
+        <h2 id="technologies-heading" class="text-2xl font-semibold text-white">Technologies</h2>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {technologies.map((tech) => <SkillBadge label={tech} />)}
+        </div>
+      </section>
+
+      {links.length > 0 && (
+        <section aria-labelledby="links-heading">
+          <h2 id="links-heading" class="text-2xl font-semibold text-white">Links</h2>
+          <div class="mt-5 flex flex-wrap gap-3">
+            {links.map((link) => (
+              <a
+                class="focus-ring rounded-md border border-cyan-300/35 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/16"
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section aria-labelledby="visual-heading">
+        <h2 id="visual-heading" class="text-2xl font-semibold text-white">Visuals / Diagrams</h2>
+        <div class="mt-5">
+          <MediaFrame title={title} image={image} video={video} imagePosition={imagePosition} note={visualNote} />
+        </div>
+      </section>
+
+      <MediaGallery items={media} />
+    </section>
+  </main>
+</BaseLayout>

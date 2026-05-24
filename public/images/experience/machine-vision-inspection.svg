@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Machine Vision Inspection Placeholder</title>
+  <desc id="desc">Technical placeholder for industrial machine-vision inspection work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="1" stop-color="#083344"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#164e63" stroke-width="2" opacity=".75">
+    <path d="M0 120h1200M0 240h1200M0 360h1200M0 480h1200M0 600h1200"/>
+    <path d="M120 0v720M240 0v720M360 0v720M480 0v720M600 0v720M720 0v720M840 0v720M960 0v720M1080 0v720"/>
+  </g>
+  <rect x="180" y="168" width="840" height="384" rx="26" fill="#020617" fill-opacity=".7" stroke="#38bdf8" stroke-opacity=".4"/>
+  <rect x="278" y="268" width="228" height="148" rx="14" fill="#0f172a" stroke="#67e8f9" stroke-width="4"/>
+  <rect x="548" y="268" width="228" height="148" rx="14" fill="#0f172a" stroke="#22d3ee" stroke-width="4"/>
+  <path d="M790 342h120" stroke="#67e8f9" stroke-width="8" stroke-linecap="round"/>
+  <path d="M392 250v-46h360v46" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="392" cy="342" r="42" fill="#22d3ee" fill-opacity=".18" stroke="#67e8f9" stroke-width="5"/>
+  <circle cx="662" cy="342" r="42" fill="#22d3ee" fill-opacity=".18" stroke="#67e8f9" stroke-width="5"/>
+  <text x="220" y="230" fill="#e0f2fe" font-family="Arial, sans-serif" font-size="42" font-weight="700">Makro Labelling SRL</text>
+  <text x="220" y="486" fill="#67e8f9" font-family="Arial, sans-serif" font-size="30">Machine Vision Inspection</text>
+</svg>

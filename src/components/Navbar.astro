@@ -1,0 +1,37 @@
+---
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/experience", label: "Experience" },
+  { href: "/research", label: "Research" },
+  { href: "/projects", label: "Projects" },
+  { href: "/resume", label: "Resume" },
+  { href: "/contact", label: "Contact" }
+];
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`);
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/88 backdrop-blur">
+  <nav class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between lg:px-8" aria-label="Primary navigation">
+    <a href="/" class="focus-ring rounded-md text-base font-semibold text-white">
+      Filippo Marcantoni
+    </a>
+    <div class="flex flex-wrap gap-2">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`focus-ring rounded-md px-3 py-2 text-sm font-medium transition ${
+            isActive(item.href)
+              ? "bg-cyan-300/10 text-cyan-200"
+              : "text-slate-300 hover:bg-slate-800 hover:text-white"
+          }`}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>

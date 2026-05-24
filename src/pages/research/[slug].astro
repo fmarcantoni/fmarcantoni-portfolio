@@ -1,0 +1,68 @@
+---
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import { research, type ResearchItem } from "../../data/research";
+import { portfolioMediaBySlug } from "../../data/portfolioMedia";
+import { localMediaBySlug } from "../../data/localMedia";
+
+export function getStaticPaths() {
+  return research.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: ResearchItem;
+}
+
+const { item } = Astro.props;
+const rawMedia = [
+  ...(portfolioMediaBySlug[item.slug] || []),
+  ...(localMediaBySlug[item.slug] || [])
+];
+const media = rawMedia.filter((mediaItem) =>
+  mediaItem.src !== item.video && mediaItem.src !== item.image
+);
+---
+
+<DetailLayout
+  type={item.type}
+  title={item.title}
+  summary={item.summary}
+  meta={[
+    { label: "Lab", value: item.lab },
+    { label: "Location", value: item.location },
+    { label: "Dates", value: item.dates }
+  ]}
+  technologies={item.technologies}
+  links={item.links}
+  image={item.image}
+  video={item.video}
+  media={media}
+  backHref="/research"
+  backLabel="Research"
+  visualNote={item.detail.visualNote}
+>
+  <section aria-labelledby="research-problem">
+    <h2 id="research-problem" class="text-2xl font-semibold text-white">Research Problem</h2>
+    <p class="mt-4 leading-7 text-slate-300">{item.detail.problem}</p>
+  </section>
+  <section aria-labelledby="my-contributions">
+    <h2 id="my-contributions" class="text-2xl font-semibold text-white">My Contributions</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.contributions.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+  <section aria-labelledby="system-method">
+    <h2 id="system-method" class="text-2xl font-semibold text-white">System / Method</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.method.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+  <section aria-labelledby="validation">
+    <h2 id="validation" class="text-2xl font-semibold text-white">Validation</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.validation.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+</DetailLayout>

@@ -1,0 +1,21 @@
+---
+import Card from "./Card.astro";
+import type { ResearchItem } from "../data/research";
+
+interface Props {
+  item: ResearchItem;
+}
+
+const { item } = Astro.props;
+---
+
+<Card
+  type={item.type}
+  title={item.title}
+  meta={item.lab}
+  dates={item.dates}
+  summary={item.summary}
+  technologies={item.technologies}
+  href={`/research/${item.slug}`}
+  image={item.image}
+/>

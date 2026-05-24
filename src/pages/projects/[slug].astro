@@ -1,0 +1,62 @@
+---
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import { projects, type ProjectItem } from "../../data/projects";
+import { portfolioMediaBySlug } from "../../data/portfolioMedia";
+import { localMediaBySlug } from "../../data/localMedia";
+
+export function getStaticPaths() {
+  return projects.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: ProjectItem;
+}
+
+const { item } = Astro.props;
+const rawMedia = [
+  ...(portfolioMediaBySlug[item.slug] || []),
+  ...(localMediaBySlug[item.slug] || [])
+];
+const media = rawMedia.filter((mediaItem) =>
+  mediaItem.src !== item.video && mediaItem.src !== item.image
+);
+---
+
+<DetailLayout
+  type={item.type}
+  title={item.title}
+  summary={item.summary}
+  meta={[
+    { label: "Course / Area", value: item.course },
+    { label: "Dates", value: item.dates }
+  ]}
+  technologies={item.technologies}
+  links={item.links}
+  image={item.image}
+  video={item.video}
+  imagePosition={item.imagePosition}
+  media={media}
+  backHref="/projects"
+  backLabel="Projects"
+  visualNote={item.detail.visualNote}
+>
+  <section aria-labelledby="problem">
+    <h2 id="problem" class="text-2xl font-semibold text-white">Problem</h2>
+    <p class="mt-4 leading-7 text-slate-300">{item.detail.problem}</p>
+  </section>
+  <section aria-labelledby="implementation">
+    <h2 id="implementation" class="text-2xl font-semibold text-white">Implementation</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.implementation.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+  <section aria-labelledby="results">
+    <h2 id="results" class="text-2xl font-semibold text-white">Results</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.results.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+</DetailLayout>

@@ -1,0 +1,23 @@
+---
+import Card from "./Card.astro";
+import type { ProjectItem } from "../data/projects";
+
+interface Props {
+  item: ProjectItem;
+}
+
+const { item } = Astro.props;
+---
+
+<Card
+  type={item.type}
+  title={item.title}
+  meta={item.course}
+  dates={item.dates}
+  summary={item.summary}
+  technologies={item.technologies}
+  href={`/projects/${item.slug}`}
+  image={item.image}
+  video={item.video}
+  imagePosition={item.imagePosition}
+/>

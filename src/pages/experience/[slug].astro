@@ -1,0 +1,54 @@
+---
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import { experience, type ExperienceItem } from "../../data/experience";
+import { localMediaBySlug } from "../../data/localMedia";
+
+export function getStaticPaths() {
+  return experience.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: ExperienceItem;
+}
+
+const { item } = Astro.props;
+const media = (localMediaBySlug[item.slug] || []).filter((mediaItem) =>
+  mediaItem.src !== item.image
+);
+---
+
+<DetailLayout
+  type={item.type}
+  title={item.title}
+  summary={item.summary}
+  meta={[
+    { label: "Role", value: item.role },
+    { label: "Organization", value: item.organization },
+    { label: "Location", value: item.location },
+    { label: "Dates", value: item.dates }
+  ]}
+  technologies={item.technologies}
+  image={item.image}
+  imagePosition={item.imagePosition}
+  media={media}
+  backHref="/experience"
+  backLabel="Experience"
+  visualNote={item.detail.visualNote}
+>
+  <section aria-labelledby="worked-on">
+    <h2 id="worked-on" class="text-2xl font-semibold text-white">What I Worked On</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.workedOn.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="technical-contributions">
+    <h2 id="technical-contributions" class="text-2xl font-semibold text-white">Technical Contributions</h2>
+    <ul class="mt-5 grid gap-3 text-slate-300">
+      {item.detail.technicalContributions.map((entry) => <li class="rounded-lg border border-slate-800 bg-slate-900/50 p-4">{entry}</li>)}
+    </ul>
+  </section>
+</DetailLayout>

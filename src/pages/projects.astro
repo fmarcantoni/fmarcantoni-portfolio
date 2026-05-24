@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { projects } from "../data/projects";
+---
+
+<BaseLayout
+  title="Projects | Filippo Marcantoni"
+  description="Robotics, computer vision, robot learning, autonomous systems, embedded systems, and software engineering projects by Filippo Marcantoni."
+>
+  <main class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+    <SectionHeader
+      eyebrow="Projects"
+      title="Projects"
+      subtitle="Selected robotics, computer vision, machine learning, embedded systems, and software projects developed through graduate coursework, research, and hands-on WPI builds."
+    />
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {projects.map((item) => <ProjectCard item={item} />)}
+    </div>
+  </main>
+  <CTASection />
+</BaseLayout>

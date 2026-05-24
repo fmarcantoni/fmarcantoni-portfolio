@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.wix-media-cache/
+media-source/
+.DS_Store
+*.log

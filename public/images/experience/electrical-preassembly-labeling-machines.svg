@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Electrical Pre-Assembly Placeholder</title>
+  <desc id="desc">Technical placeholder for electrical pre-assembly of industrial labeling machines.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect x="154" y="152" width="892" height="416" rx="28" fill="#020617" fill-opacity=".72" stroke="#60a5fa" stroke-opacity=".42"/>
+  <g fill="none" stroke-width="8" stroke-linecap="round">
+    <path d="M260 460c130-180 250-180 380 0s250 180 380 0" stroke="#38bdf8"/>
+    <path d="M260 360c130-120 250-120 380 0s250 120 380 0" stroke="#67e8f9"/>
+    <path d="M260 260c130-60 250-60 380 0s250 60 380 0" stroke="#93c5fd"/>
+  </g>
+  <g fill="#020617" stroke="#bfdbfe" stroke-width="5">
+    <circle cx="260" cy="460" r="24"/>
+    <circle cx="640" cy="460" r="24"/>
+    <circle cx="1020" cy="460" r="24"/>
+  </g>
+  <text x="210" y="236" fill="#e0f2fe" font-family="Arial, sans-serif" font-size="42" font-weight="700">Industrial Labeling Machines</text>
+  <text x="210" y="294" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="29">Electrical Pre-Assembly &amp; Wiring</text>
+</svg>

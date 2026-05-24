@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
+---
+
+<BaseLayout
+  title="Resume | Filippo Marcantoni"
+  description="My resume for robotics engineering, computer vision, robot learning, physical AI, industrial automation, and autonomous systems roles."
+>
+  <main class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+    <section class="mx-auto max-w-4xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase text-cyan-300">Resume</p>
+      <h1 class="text-5xl font-semibold text-white">Resume</h1>
+      <p class="mt-5 text-lg leading-8 text-slate-300">
+        Open to roles in robotics engineering, computer vision, robot learning, physical AI, industrial automation, autonomous systems, and robotics software engineering.
+      </p>
+      <div class="mt-8">
+        <a class="focus-ring inline-flex rounded-md bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200" href="/resume/Filippo-Marcantoni-Resume.pdf">
+          Download Resume
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-12" aria-label="Embedded resume">
+      <div class="surface overflow-hidden rounded-lg">
+        <iframe
+          title="Filippo Marcantoni Resume PDF"
+          src="/resume/Filippo-Marcantoni-Resume.pdf"
+          class="h-[780px] w-full bg-slate-900"
+        ></iframe>
+      </div>
+    </section>
+  </main>
+  <CTASection />
+</BaseLayout>

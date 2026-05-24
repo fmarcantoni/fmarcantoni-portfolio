@@ -1,0 +1,91 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+const buttons = [
+  { href: "/experience", label: "View Experience", variant: "primary" },
+  { href: "/research", label: "View Research", variant: "secondary" },
+  { href: "/projects", label: "View Projects", variant: "secondary" },
+  { href: "/resume/Filippo-Marcantoni-Resume.pdf", label: "Download Resume", variant: "secondary" },
+  { href: "/contact", label: "Contact Me", variant: "secondary" },
+  { href: "https://github.com/fmarcantoni", label: "GitHub", variant: "ghost" },
+  { href: "https://www.linkedin.com/in/filippo-marcantoni-590543264/", label: "LinkedIn", variant: "ghost" }
+];
+
+const snapshotCandidates = [
+  "/images/profile/filippo-marcantoni.jpg",
+  "/images/profile/filippo-marcantoni.png",
+  "/images/profile/filippo-marcantoni.webp"
+];
+
+const snapshot = snapshotCandidates.find((asset) =>
+  fs.existsSync(path.join(process.cwd(), "public", asset.slice(1)))
+);
+---
+
+<section class="relative overflow-hidden border-b border-slate-800/80">
+  <div class="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-5 py-20 md:grid-cols-[1.15fr_0.85fr] lg:px-8">
+    <div>
+      <p class="mb-5 inline-flex rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 text-sm font-semibold uppercase text-cyan-200">
+        Robotics Engineer | Computer Vision, Robot Learning & Physical AI
+      </p>
+      <h1 class="max-w-4xl text-5xl font-semibold leading-[1.05] text-white md:text-6xl">
+        Building robotic AI systems for real-world deployment.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+        I’m Filippo Marcantoni, an M.S. Robotics Engineer focused on computer vision, robot learning, physical AI, swarm robotics, VR teleoperation, and industrial automation.
+      </p>
+      <p class="mt-5 max-w-3xl text-base leading-7 text-slate-400">
+        M.S. Robotics Engineer building end-to-end robotic systems across 3D computer vision, robot learning, generative AI, swarm robotics, industrial automation, and physical AI. Focused on bridging perception, learning, and control for real-world deployment.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        {buttons.map((button) => (
+          <a
+            href={button.href}
+            target={button.href.startsWith("http") ? "_blank" : undefined}
+            rel={button.href.startsWith("http") ? "noreferrer" : undefined}
+            class={`focus-ring rounded-md px-4 py-3 text-sm font-semibold transition ${
+              button.variant === "primary"
+                ? "bg-cyan-300 text-slate-950 hover:bg-cyan-200"
+                : button.variant === "ghost"
+                  ? "border border-slate-700 text-slate-300 hover:border-cyan-300/50 hover:text-cyan-200"
+                  : "border border-cyan-300/35 bg-cyan-300/10 text-cyan-100 hover:bg-cyan-300/16"
+            }`}
+          >
+            {button.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-sm md:max-w-md lg:max-w-[430px]">
+      {snapshot ? (
+        <figure class="surface relative overflow-hidden rounded-lg p-3">
+          <div class="relative aspect-[4/5] max-h-[560px] overflow-hidden rounded-md">
+            <img
+              class="h-full w-full object-cover object-[50%_34%]"
+              src={snapshot}
+              alt="Filippo Marcantoni"
+              loading="eager"
+            />
+            <div class="pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-cyan-300/20"></div>
+          </div>
+        </figure>
+      ) : (
+        <div aria-hidden="true">
+          <div class="surface absolute inset-0 rounded-lg"></div>
+          <div class="technical-grid absolute inset-5 rounded-lg border border-slate-700/70 bg-slate-950/80"></div>
+          <div class="absolute left-12 right-12 top-20 h-px signal-line"></div>
+          <div class="absolute bottom-20 left-12 right-12 h-px signal-line"></div>
+          <div class="absolute left-12 top-20 h-[260px] w-px bg-cyan-300/30"></div>
+          <div class="absolute right-12 top-20 h-[260px] w-px bg-sky-300/20"></div>
+          <div class="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-md border border-cyan-300/35 bg-slate-900/90 shadow-glow"></div>
+          <div class="absolute left-[26%] top-[30%] h-16 w-16 rounded-md border border-slate-600 bg-slate-900/80"></div>
+          <div class="absolute bottom-[26%] right-[22%] h-20 w-20 rounded-md border border-sky-300/25 bg-slate-900/80"></div>
+          <div class="absolute left-[32%] top-[36%] h-px w-[28%] rotate-[24deg] bg-cyan-300/40"></div>
+          <div class="absolute right-[30%] top-[56%] h-px w-[24%] -rotate-[34deg] bg-sky-300/30"></div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
