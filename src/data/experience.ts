@@ -99,7 +99,7 @@ export const experience: ExperienceItem[] = [
     ],
     featured: true,
     image: "/images/experience/makro-labelling-team.jpg",
-    imagePosition: "center top",
+    imagePosition: "center 12%",
     detail: {
       workedOn: [
         "Developed inspection pipelines for production labeling systems with changing bottle formats, lighting conditions, and label-placement constraints.",
