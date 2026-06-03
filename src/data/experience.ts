@@ -119,7 +119,7 @@ export const experience: ExperienceItem[] = [
     title: "Automation Studio Programming for Labeling Machines",
     slug: "automation-studio-programming",
     type: "Work Experience",
-    role: "Programming Intern",
+    role: "Software Engineer Intern",
     organization: "Makro Labelling SRL",
     location: "Goito, Mantua, Italy",
     dates: "May 2023 – Aug 2023",
