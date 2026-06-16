@@ -133,6 +133,62 @@ export const projects: ProjectItem[] = [
     }
   },
   {
+    title: "Learning Push Dynamics: Physics, Neural & Hybrid Models",
+    slug: "learning-push-dynamics",
+    type: "Project",
+    course: "RBE 577 – Machine Learning for Robotics",
+    dates: "Spring 2026",
+    summary:
+      "Implemented and compared physics-based, neural-network, and hybrid physics-informed models for predicting planar object motion under robotic pushing, then used the learned models for gradient-based push planning.",
+    bullets: [
+      "Modeled UR10 planar pushing outcomes for a rigid cracker-box object using push parameters and final object pose data.",
+      "Implemented a rigid-body physics simulator with Euler integration and a sinusoidal push-velocity profile.",
+      "Trained MLP and hybrid physics-informed models on an 80/20 train/test split.",
+      "Evaluated forward prediction with MSE and mean Euclidean distance, and implemented gradient-based push planning through all three models.",
+      "Achieved the best held-out prediction accuracy with the hybrid model: 0.0036 MSE and 0.0653 m MED."
+    ],
+    technologies: [
+      "PyTorch",
+      "Physics-Based Learning",
+      "Hybrid Models",
+      "Robot Manipulation",
+      "Push Dynamics",
+      "Gradient-Based Planning",
+      "Rigid-Body Dynamics",
+      "Numerical Integration"
+    ],
+    featured: false,
+    image: "/images/projects/learning-push-dynamics.png",
+    links: [
+      {
+        label: "Technical Report",
+        href: "/reports/projects/rbe577-project2-learning-push-dynamics-report.pdf"
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/fmarcantoni/learning-push-dynamics"
+      }
+    ],
+    detail: {
+      problem:
+        "Robotic pushing requires predicting how contact parameters map to object motion, while balancing physical structure, learned dynamics, and planning reliability.",
+      implementation: [
+        "Implemented a physics baseline for planar rigid-body pushing using object mass, size, moment of inertia, contact distance, push duration, and Euler integration.",
+        "Trained a fully connected neural network to map push parameters to final object pose.",
+        "Built a hybrid model that augments learned inputs with the physics model prediction to combine structured prior knowledge with data-driven correction.",
+        "Implemented gradient-based push planning by optimizing push parameters through the frozen forward models."
+      ],
+      results: [
+        "Compared physics, neural, and hybrid models on a held-out test set using MSE and mean Euclidean distance.",
+        "Improved forward prediction from the pure neural model to the hybrid model, reducing test MSE from 0.0075 to 0.0036.",
+        "Observed that the physics model, despite weaker forward prediction, produced reliable planning on two of three held-out planning samples due to a smoother optimization landscape.",
+        "Documented results with prediction scatter plots, XY trajectory comparisons, training curves, and a technical report."
+      ],
+      visualNote:
+        "Forward-prediction plots, XY trajectory comparisons, and training curves are included below."
+    }
+  },
+  {
     title: "Classical MSCKF & Deep Visual-Inertial Odometry",
     slug: "visual-inertial-odometry",
     type: "Project",

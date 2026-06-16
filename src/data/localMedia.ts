@@ -108,6 +108,20 @@ export const localMediaBySlug: Record<string, PortfolioMediaItem[]> = {
       poster: "/images/projects/imitation-learning-diff50-poster.jpg"
     }
   ],
+  "learning-push-dynamics": [
+    {
+      type: "image",
+      src: "/images/projects/learning-push-dynamics-predictions.png",
+      title: "Forward Prediction Comparison",
+      description: "Scatter comparison of ground-truth final poses against physics, neural-network, and hybrid model predictions on held-out push data."
+    },
+    {
+      type: "image",
+      src: "/images/projects/learning-push-dynamics-training-curves.png",
+      title: "Training Curves",
+      description: "Training losses comparing the neural-network, hybrid, and physics-reference models over the push-dynamics learning run."
+    }
+  ],
   "visual-inertial-odometry": [
     {
       type: "video",
