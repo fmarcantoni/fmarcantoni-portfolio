@@ -51,6 +51,7 @@ export const skills: SkillCategory[] = [
       "PyTorch",
       "TensorFlow",
       "Scikit-learn",
+      "TensorRT",
       "CUDA",
       "Machine Learning",
       "Deep Learning",
@@ -100,17 +101,20 @@ export const skills: SkillCategory[] = [
       "Linux",
       "Jupyter",
       "Simulink",
-      "SolidWorks",
-      "Fusion 360",
       "Azure AI",
       "AWS",
       "AWS Lambda",
       "API Gateway",
+      "React",
+      "Node.js",
       "PostgreSQL",
       "MySQL",
-      "HPC/Slurm",
-      "CI/CD"
+      "HPC/Slurm"
     ]
+  },
+  {
+    category: "CAD & Design",
+    skills: ["SolidWorks", "Fusion 360"]
   },
   {
     category: "Languages",
