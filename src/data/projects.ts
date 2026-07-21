@@ -514,6 +514,62 @@ export const projects: ProjectItem[] = [
     }
   },
   {
+    title: "Autonomous Navigation & SLAM for TurtleBot3",
+    slug: "slam-navigation-localization",
+    type: "Project",
+    course: "RBE 3002 – Unified Robotics IV",
+    dates: "December 2024",
+    summary:
+      "Built a complete ROS mobile-robot navigation pipeline for TurtleBot3, combining occupancy-grid SLAM, frontier-based exploration, A* path planning, path following, and AMCL localization in a maze environment.",
+    bullets: [
+      "Built occupancy-grid maps of an unknown maze from TurtleBot3 LiDAR and odometry data.",
+      "Implemented frontier detection and goal selection for autonomous exploration and return-to-home behavior.",
+      "Planned collision-free routes with A* over an inflated configuration-space map.",
+      "Integrated path following, obstacle-aware motion control, and AMCL localization for goal-directed navigation.",
+      "Demonstrated and visualized the full pipeline in Gazebo and RViz."
+    ],
+    technologies: [
+      "ROS",
+      "Python",
+      "TurtleBot3",
+      "SLAM",
+      "GMapping",
+      "AMCL",
+      "A* Path Planning",
+      "Frontier Exploration",
+      "Gazebo",
+      "RViz"
+    ],
+    featured: false,
+    image: "/images/projects/slam-navigation-localization.jpg",
+    video: "/videos/projects/SLAM.mp4",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/fmarcantoni/slam-navigation-localization"
+      }
+    ],
+    detail: {
+      problem:
+        "A mobile robot operating in an unknown indoor environment must simultaneously construct a useful map, estimate its pose, choose informative areas to explore, and reach goals without colliding with obstacles.",
+      implementation: [
+        "Used TurtleBot3 LiDAR and odometry with a GMapping-style SLAM configuration to construct an occupancy-grid map of the maze environment.",
+        "Implemented frontier-based exploration to identify boundaries between known and unknown space and select promising navigation targets.",
+        "Inflated occupied cells into a configuration-space safety margin, then used A* to compute collision-free paths through the grid.",
+        "Built path-following and obstacle-aware motion-control nodes that convert planned routes into robot velocity commands.",
+        "Used AMCL on the saved map for pose estimation and goal-directed navigation, with Gazebo simulation and RViz visualization."
+      ],
+      results: [
+        "Produced occupancy-grid maps through autonomous exploration of a maze-like environment.",
+        "Planned and followed safe routes to exploration targets and user-requested goals.",
+        "Integrated mapping, exploration, planning, control, and localization into reusable ROS launch workflows for simulation and hardware-oriented operation.",
+        "Visualized the robot, laser observations, evolving map, selected goals, planned path, and localization state in RViz."
+      ],
+      visualNote:
+        "The demonstration shows TurtleBot3 navigating in simulation while RViz displays the occupancy map, planned path, and exploration behavior."
+    }
+  },
+  {
     title: "Active Neck for Enhanced Visual Feedback",
     slug: "active-neck-iona",
     type: "Project",
