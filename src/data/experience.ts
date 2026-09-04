@@ -116,7 +116,7 @@ export const experience: ExperienceItem[] = [
     }
   },
   {
-    title: "Automation Studio Programming for Labeling Machines",
+    title: "Automation Programming for Labeling Machines",
     slug: "automation-studio-programming",
     type: "Work Experience",
     role: "Automation Software Engineer Intern",
@@ -129,7 +129,8 @@ export const experience: ExperienceItem[] = [
       "Worked in the B&R Automation Studio development environment using Structured Text, Ladder programming, and Visual Components.",
       "Completed Automation Studio Basic and Automation Studio Motion training certificates.",
       "Supported activation and testing of industrial labeling machines, including alarm checks for labeling groups and full-machine startup behavior.",
-      "Calibrated sensors and photocells used for bottle orientation based on marks or welds on the machine carousel."
+      "Calibrated sensors and photocells used for bottle orientation based on marks or welds on the machine carousel.",
+      "Developed HMI control-panel interfaces for individual machine groups using Emerson Movicon SCADA software and B&R Automation Studio HMI tools."
     ],
     technologies: [
       "Automation Studio",
