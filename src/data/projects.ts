@@ -389,6 +389,10 @@ export const projects: ProjectItem[] = [
     image: "/images/projects/maxcal-swarm-control.png",
     links: [
       {
+        label: "GitHub",
+        href: "https://github.com/fmarcantoni/MaxCalSwarmProject"
+      },
+      {
         label: "Technical Report",
         href: "/reports/projects/maxcal-swarm-control-report.pdf"
       }
